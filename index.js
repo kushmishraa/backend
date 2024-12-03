@@ -1,12 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-const mongoURI = "mongodb+srv://root:root@cluster0.9vlh4jj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const mongoURI = "mongodb+srv://root:root@cluster0.9vlh4jj.mongodb.net/newDB?retryWrites=true&w=majority&appName=Cluster0";
+
 mongoose.connect(mongoURI)
-  .then(()=>{
+  .then(() => {
     console.log("db connected");
   })
-  .catch((ex)=>console.log(ex));
+  .catch((ex) => console.log(ex));
 
 const routes = require("./routes/Routes")
 
@@ -15,7 +16,9 @@ const PORT = 3000;
 
 app.use(express.json())
 
-app.use("/",routes);
+app.use("/", routes);
+
+app.use(require('./Models/testModelUser'));
 
 
 app.listen(PORT, () => {
